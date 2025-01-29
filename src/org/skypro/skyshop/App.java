@@ -1,21 +1,28 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 public class App {
     public static void main(String[] args) {
 
         //Создание продуктов для корзины
-        Product apple = new Product ( "Яблоко", 500 );
+        SimpleProduct apple = new SimpleProduct ( "Яблоко", 500 );
 
-        Product orange = new Product ( "Апельсин", 100 );
+        SimpleProduct orange = new SimpleProduct ( "Апельсин", 100 );
 
-        Product milk = new Product ( "Молоко", 200 );
+        SimpleProduct milk = new SimpleProduct ( "Молоко", 200 );
 
-        Product juice = new Product ( "Сок", 150 );
+        Product juice = new SimpleProduct ( "Сок", 150 );
 
-        Product water = new Product ( "Вода", 50 );
+        Product water = new SimpleProduct ( "Вода", 50 );
+
+        Product banana = new FixPriceProduct ( "Банан" );
+
+        Product wine = new DiscountedProduct ( "Вино", 540, 25 );
 
         //Создание первой корзины
         ProductBasket firstBasket = new ProductBasket ();
@@ -24,8 +31,8 @@ public class App {
         firstBasket.addProduct ( apple );
         firstBasket.addProduct ( juice );
         firstBasket.addProduct ( milk );
-        firstBasket.addProduct ( orange );
-        firstBasket.addProduct ( water );
+        firstBasket.addProduct ( banana );
+        firstBasket.addProduct ( wine );
 
         System.out.println ( "+++Добавление товара сверх лимита корзины+++" );
         firstBasket.addProduct ( apple );
