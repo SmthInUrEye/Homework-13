@@ -10,7 +10,7 @@ public abstract class Product {
 
     public abstract String getProductName();
 
-    public abstract int getProductValue();
+    public abstract int getPrice();
 
     public abstract boolean isSpecial();
 

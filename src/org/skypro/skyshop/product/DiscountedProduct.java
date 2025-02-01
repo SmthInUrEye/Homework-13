@@ -17,13 +17,13 @@ public class DiscountedProduct extends Product {
     }
 
     @Override
-    public int getProductValue() {
+    public int getPrice() {
         return (BaseValue - ((BaseValue * Discount) / 100));
     }
 
     @Override
     public String toString() {
-        return (getProductName () + ": " + getProductValue () + "(" + Discount + ")");
+        return (getProductName () + ": " + getPrice () + "(" + Discount + ")");
     }
 
     @Override

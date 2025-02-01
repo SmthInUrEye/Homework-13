@@ -14,13 +14,13 @@ public class SimpleProduct extends Product {
     }
 
     @Override
-    public int getProductValue() {
+    public int getPrice() {
         return ProductValue;
     }
 
     @Override
     public String toString() {
-        return (getProductName () + ": " + getProductValue ());
+        return (getProductName () + ": " + getPrice ());
     }
 
     @Override

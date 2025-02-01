@@ -22,7 +22,7 @@ public class ProductBasket {
         for (int i = 0; i < ProductsInBasket.length; i++) {
             if ( ProductsInBasket[i] != null ) {
                 {
-                    TotalBasketValue += ProductsInBasket[i].getProductValue ();
+                    TotalBasketValue += ProductsInBasket[i].getPrice ();
                 }
             } else {
                 TotalBasketValue += 0;
@@ -38,7 +38,9 @@ public class ProductBasket {
                 SpecialCounter++;
             }
         }
+        printBasketValue ();
         System.out.println ( "Специальных товаров: " + SpecialCounter );
+
     }
 
     public boolean checkProduct(String ProductName) {
@@ -49,7 +51,7 @@ public class ProductBasket {
                     flag = true;
                     break;
                 }
-            } else i++;
+            }
         }
         return flag;
     }
