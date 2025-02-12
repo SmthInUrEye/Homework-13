@@ -35,6 +35,10 @@ public class SimpleProduct extends Product {
 
     @Override
     public String checkContentType() {
-        return "SIMPLEPRODUCT";
+        return "PRODUCT";
+    }
+    @Override
+    public String getSearchableName() {
+        return getProductName();
     }
 }

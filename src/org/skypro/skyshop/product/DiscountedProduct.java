@@ -38,6 +38,13 @@ public class DiscountedProduct extends Product {
 
     @Override
     public String checkContentType() {
-        return "DISCOUNTED PRODUCT";
+        return "PRODUCT";
+    }
+
+    @Override
+    public String getSearchableName() {
+        return getProductName();
     }
 }
+
+

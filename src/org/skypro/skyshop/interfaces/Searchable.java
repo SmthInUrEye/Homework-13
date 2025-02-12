@@ -6,8 +6,10 @@ public interface Searchable {
 
     String checkContentType();
 
+    String getSearchableName();
+
     default String getStringRepresentation() {
-        return (searchTerm () + " - " + checkContentType ());
+        return (getSearchableName () + " - " + checkContentType ());
     }
 
 }

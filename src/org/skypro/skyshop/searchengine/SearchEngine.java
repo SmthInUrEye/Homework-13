@@ -6,11 +6,11 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
 
     public Searchable[] SearchableElements;
 
+    private int counter = 0;
+
     public SearchEngine(int numOfSearchElements) {
         this.SearchableElements = new Searchable[numOfSearchElements];
     }
-
-    private int counter = 0;
 
     public void add(Searchable target) {
         if ( counter >= SearchableElements.length ) {
@@ -41,5 +41,7 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
         return "";
     }
 
+    @Override
+    public String getSearchableName() { return "";}
 
 }

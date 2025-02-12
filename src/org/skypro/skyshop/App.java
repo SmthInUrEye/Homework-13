@@ -82,5 +82,8 @@ public class App {
 
         // *** Метод contains учитывает регистр строковой переменной -
         // банан нашел в названии статьи, а как товар не определил
+
+        System.out.println("Тест определения имени");
+        System.out.println(SearchableArray.SearchableElements[1].getSearchableName());
     }
 }

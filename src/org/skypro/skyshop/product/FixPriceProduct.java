@@ -34,7 +34,11 @@ public class FixPriceProduct extends Product {
 
     @Override
     public String checkContentType() {
-        return "FIXED PRICE PRODUCT";
+        return "PRODUCT";
     }
 
+    @Override
+    public String getSearchableName() {
+        return getProductName();
+    }
 }
