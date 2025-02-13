@@ -3,8 +3,8 @@ package org.skypro.skyshop.product;
 public class FixPriceProduct extends Product {
     private static final int FIXED_VALUE = 75;
 
-    public FixPriceProduct(String ProductName) {
-        super ( ProductName );
+    public FixPriceProduct(String productName) {
+        super ( productName );
     }
 
     @Override
@@ -14,7 +14,7 @@ public class FixPriceProduct extends Product {
 
     @Override
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
     @Override
@@ -27,18 +27,4 @@ public class FixPriceProduct extends Product {
         return true;
     }
 
-    @Override
-    public String searchTerm() {
-        return getProductName ();
-    }
-
-    @Override
-    public String checkContentType() {
-        return "PRODUCT";
-    }
-
-    @Override
-    public String getSearchableName() {
-        return getProductName();
-    }
 }

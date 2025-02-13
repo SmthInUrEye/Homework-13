@@ -4,19 +4,19 @@ import org.skypro.skyshop.interfaces.Searchable;
 
 public class Article implements Searchable {
 
-    private final String ArticleName;
-    private final String ArticleText;
+    private final String articleName;
+    private final String articleText;
 
-    public Article(String ArticleName, String ArticleText) {
-        this.ArticleName = ArticleName;
-        this.ArticleText = ArticleText;
+    public Article(String articleName, String articleText) {
+        this.articleName = articleName;
+        this.articleText = articleText;
     }
 
     @Override
     public String toString() {
         return "Article{" +
-                "ArticleName='" + ArticleName + '\'' +
-                ", ArticleText='" + ArticleText + '\'' +
+                "ArticleName='" + articleName + '\'' +
+                ", ArticleText='" + articleText + '\'' +
                 '}';
     }
 
@@ -32,6 +32,6 @@ public class Article implements Searchable {
 
     @Override
     public String getSearchableName() {
-        return ArticleName;
+        return articleName;
     }
 }

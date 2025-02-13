@@ -45,36 +45,36 @@ public class App {
                 "Яблок всегда мало и они часто используются в школьных задачках" );
 
         //Создание поискового объекта
-        SearchEngine SearchableArray = new SearchEngine ( 5 );
-        SearchableArray.add ( banana );
-        SearchableArray.add ( apple );
-        SearchableArray.add ( apple );
-        SearchableArray.add ( articleAboutApple );
-        SearchableArray.add ( articleAboutBanana );
+        SearchEngine searchableArray = new SearchEngine ( 5 );
+        searchableArray.add ( banana );
+        searchableArray.add ( apple );
+        searchableArray.add ( apple );
+        searchableArray.add ( articleAboutApple );
+        searchableArray.add ( articleAboutBanana );
 
         //Объявление массива результатов поиска
         String[] result;
 
-        result = SearchableArray.search ( "про яблоки" );
+        result = searchableArray.search ( "про яблоки" );
         System.out.println ( "\nДемонстрация поиска статьи" );
         for (String s : result) {
             System.out.println ( s );
         }
 
 
-        result = SearchableArray.search ( "Яблоко" );
+        result = searchableArray.search ( "Яблоко" );
         System.out.println ( "\nДемонстрация поиска товара" );
         for (String s : result) {
             System.out.println ( s );
         }
 
-        result = SearchableArray.search ( "банан" );
+        result = searchableArray.search ( "банан" );
         System.out.println ( "\nДемонстрация поиска товара" );
         for (String s : result) {
             System.out.println ( s );
         }
 
-        result = SearchableArray.search ( "Банан" );
+        result = searchableArray.search ( "Банан" );
         System.out.println ( "\nДемонстрация поиска товара" );
         for (String s : result) {
             System.out.println ( s );
@@ -84,6 +84,6 @@ public class App {
         // банан нашел в названии статьи, а как товар не определил
 
         System.out.println("Тест определения имени");
-        System.out.println(SearchableArray.SearchableElements[1].getSearchableName());
+        System.out.println(searchableArray.searchableElements[1].getSearchableName());
     }
 }
