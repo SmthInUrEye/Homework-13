@@ -1,10 +1,13 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.searchengine.SearchEngine;
+
 
 public class App {
     public static void main(String[] args) {
@@ -34,33 +37,53 @@ public class App {
         firstBasket.addProduct ( banana );
         firstBasket.addProduct ( wine );
 
-        System.out.println ( "+++Добавление товара сверх лимита корзины+++" );
-        firstBasket.addProduct ( apple );
+        //Создание статей для поиска
+        Article articleAboutBanana = new Article ( "Статья про бананы",
+                "Бананы очень полезны для организма. Растут на деревьях" );
 
-        System.out.println ( "+++Печать всей корзины+++" );
-        firstBasket.printBasketInfo ();
+        Article articleAboutApple = new Article ( "Статья про яблоки",
+                "Яблок всегда мало и они часто используются в школьных задачках" );
 
-        System.out.println ( "+++Печать общей стоимости корзины+++" );
-        firstBasket.printBasketValue ();
+        //Создание поискового объекта
+        SearchEngine searchableArray = new SearchEngine ( 5 );
+        searchableArray.add ( banana );
+        searchableArray.add ( apple );
+        searchableArray.add ( apple );
+        searchableArray.add ( articleAboutApple );
+        searchableArray.add ( articleAboutBanana );
 
-        System.out.println ( "+++Проверка отсутствующего товара+++" );
-        if ( firstBasket.checkProduct ( "Мясо" ) )
-            System.out.println ( "Товар есть в корзине" );
-        else System.out.println ( "Товар не найден" );
+        //Объявление массива результатов поиска
+        String[] result;
 
-        System.out.println ( "+++Проверка существующего товара+++" );
-        if ( firstBasket.checkProduct ( "Яблоко" ) )
-            System.out.println ( "Товар есть в корзине" );
-        else System.out.println ( "Товар не найден" );
+        result = searchableArray.search ( "про яблоки" );
+        System.out.println ( "\nДемонстрация поиска статьи" );
+        for (String s : result) {
+            System.out.println ( s );
+        }
 
-        System.out.println ( "+++Проверка пустой корзины+++" );
-        firstBasket.clearBasket ();
-        firstBasket.printBasketInfo ();
-        firstBasket.printBasketValue ();
 
-        if ( firstBasket.checkProduct ( "Яблоко" ) )
-            System.out.println ( "Товар есть в корзине" );
-        else System.out.println ( "Товар не найден" );
+        result = searchableArray.search ( "Яблоко" );
+        System.out.println ( "\nДемонстрация поиска товара" );
+        for (String s : result) {
+            System.out.println ( s );
+        }
 
+        result = searchableArray.search ( "банан" );
+        System.out.println ( "\nДемонстрация поиска товара" );
+        for (String s : result) {
+            System.out.println ( s );
+        }
+
+        result = searchableArray.search ( "Банан" );
+        System.out.println ( "\nДемонстрация поиска товара" );
+        for (String s : result) {
+            System.out.println ( s );
+        }
+
+        // *** Метод contains учитывает регистр строковой переменной -
+        // банан нашел в названии статьи, а как товар не определил
+
+        System.out.println("Тест определения имени");
+        System.out.println(searchableArray.searchableElements[1].getSearchableName());
     }
 }

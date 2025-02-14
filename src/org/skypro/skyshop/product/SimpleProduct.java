@@ -1,21 +1,21 @@
 package org.skypro.skyshop.product;
 
 public class SimpleProduct extends Product {
-    private final int ProductValue;
+    private final int productValue;
 
-    public SimpleProduct(String ProductName, int ProductValue) {
-        super ( ProductName );
-        this.ProductValue = ProductValue;
+    public SimpleProduct(String productName, int productValue) {
+        super ( productName );
+        this.productValue = productValue;
     }
 
     @Override
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
     @Override
     public int getPrice() {
-        return ProductValue;
+        return productValue;
     }
 
     @Override
@@ -27,4 +27,5 @@ public class SimpleProduct extends Product {
     public boolean isSpecial() {
         return false;
     }
+
 }
