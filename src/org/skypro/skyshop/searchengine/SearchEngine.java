@@ -13,8 +13,8 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
     }
 
     public void add(Searchable target) {
-        if ( counter >= searchableElements.length ) {
-            System.out.println ( "Переполнение поисковых элементов" );
+        if (counter >= searchableElements.length) {
+            System.out.println("Переполнение поисковых элементов");
         } else {
             searchableElements[counter] = target;
             counter++;
@@ -24,12 +24,24 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
     public String[] search(String search) {
         String[] result = new String[5];
         for (int i = 0; i < searchableElements.length; i++) {
-            if ( searchableElements[i].searchTerm ().contains ( search ) ) {
-                result[i] = searchableElements[i].getStringRepresentation ();
+            if (searchableElements[i].searchTerm().contains(search)) {
+                result[i] = searchableElements[i].getStringRepresentation();
             } else result[i] = null;
         }
         return result;
     }
+
+    public int maxRepeats(String search, String placeToSearch) {
+        int maxRepeats = 0;
+        while (search.length() <= placeToSearch.length()) {
+            if (placeToSearch.contains(search)) {
+                maxRepeats++;
+            } else break;
+        }
+        return maxRepeats;
+    }
+
+    //public Searchable findBestResult (String search) {}
 
     @Override
     public String searchTerm() {
@@ -42,6 +54,8 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
     }
 
     @Override
-    public String getSearchableName() { return "";}
+    public String getSearchableName() {
+        return "";
+    }
 
 }
