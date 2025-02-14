@@ -4,8 +4,13 @@ public class SimpleProduct extends Product {
     private final int productValue;
 
     public SimpleProduct(String productName, int productValue) {
-        super ( productName );
+        super(productName);
+        checkSimpleProductPrice(productValue);
         this.productValue = productValue;
+    }
+
+    public static void checkSimpleProductPrice(int productValue) {
+        if (productValue < 0) throw new IllegalArgumentException("Цена должна быть больше 0");
     }
 
     @Override
@@ -20,7 +25,7 @@ public class SimpleProduct extends Product {
 
     @Override
     public String toString() {
-        return (getProductName () + ": " + getPrice ());
+        return (getProductName() + ": " + getPrice());
     }
 
     @Override
