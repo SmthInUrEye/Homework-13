@@ -10,12 +10,12 @@ public abstract class Product implements Searchable {
     protected final String productName;
 
     public Product(String productName) {
-        checkProductName(productName);
+        checkProductName ( productName );
         this.productName = productName;
     }
 
     public static void checkProductName(String productName) {
-        if (productName.isBlank()) throw new IllegalArgumentException("Пустое наименование товара");
+        if ( productName.isBlank () ) throw new IllegalArgumentException ( "Пустое наименование товара" );
     }
 
     public abstract String getProductName();
@@ -35,12 +35,12 @@ public abstract class Product implements Searchable {
 
     @Override
     public String searchTerm() {
-        return getProductName();
+        return getProductName ();
     }
 
     @Override
     public String getSearchableName() {
-        return getProductName();
+        return getProductName ();
     }
 
 }
