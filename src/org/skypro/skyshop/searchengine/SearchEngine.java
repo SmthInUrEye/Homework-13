@@ -1,5 +1,6 @@
 package org.skypro.skyshop.searchengine;
 
+import org.skypro.skyshop.exeptions.BestResultNotFound;
 import org.skypro.skyshop.interfaces.Searchable;
 
 public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
@@ -31,6 +32,24 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
         return result;
     }
 
+    public Searchable findBestResult(String search) throws BestResultNotFound {
+
+        int bestResultIndex = -1;
+        int maxRepeatsInSearch = 0;
+
+        for (int i = 0; i < searchableElements.length; i++) {
+            if ( maxRepeatsInSearch < getSearchTerm ( search, searchableElements[i].searchTerm () ) ) {
+                maxRepeatsInSearch = getSearchTerm ( search, searchableElements[i].searchTerm () );
+                bestResultIndex = i;
+            }
+        }
+
+        if ( maxRepeatsInSearch == 0 ) {
+            throw new BestResultNotFound ( search );
+        }
+        return searchableElements[bestResultIndex];
+    }
+
     @Override
     public String searchTerm() {
         return "";
@@ -42,6 +61,8 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
     }
 
     @Override
-    public String getSearchableName() { return "";}
+    public String getSearchableName() {
+        return "";
+    }
 
 }

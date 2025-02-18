@@ -2,14 +2,18 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.interfaces.Searchable;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.searchengine.SearchEngine;
 
+import java.io.IOException;
+
 
 public class App {
+
     public static void main(String[] args) {
 
         //Создание продуктов для корзины
@@ -25,7 +29,7 @@ public class App {
 
         Product banana = new FixPriceProduct ( "Банан" );
 
-        Product wine = new DiscountedProduct ( "Вино", 540, 25 );
+        Product wine = new DiscountedProduct ( "Вино", 450, 25 );
 
         //Создание первой корзины
         ProductBasket firstBasket = new ProductBasket ();
@@ -52,38 +56,31 @@ public class App {
         searchableArray.add ( articleAboutApple );
         searchableArray.add ( articleAboutBanana );
 
-        //Объявление массива результатов поиска
-        String[] result;
-
-        result = searchableArray.search ( "про яблоки" );
-        System.out.println ( "\nДемонстрация поиска статьи" );
-        for (String s : result) {
-            System.out.println ( s );
+        //Создание некорректных объектов классов
+        System.out.println ( "\nТестирование продуктовых исключений" );
+        try {
+            Product brokenApple = new FixPriceProduct ( "  " );
+            SimpleProduct brokenOrange = new SimpleProduct ( "Сломанный Апельсин", -40 );
+            DiscountedProduct brokenJuice = new DiscountedProduct ( "Сломанный сок", 40, 150 );
+        } catch (Exception e) {
+            System.out.println ( e );
         }
 
+        //Демонстрация поиска наиболее подходящего результата
+        Searchable bestResult;
+        Searchable brokenBestResult;
+        try {
+            System.out.println ( "\nИщем существующий объект" );
+            bestResult = searchableArray.findBestResult ( "банан" );
+            System.out.println ( bestResult.getStringRepresentation () );
 
-        result = searchableArray.search ( "Яблоко" );
-        System.out.println ( "\nДемонстрация поиска товара" );
-        for (String s : result) {
-            System.out.println ( s );
+            System.out.println ( "\nИщем несуществующий объект" );
+            brokenBestResult = searchableArray.findBestResult ( "Космос" );
+            System.out.println ( brokenBestResult.getStringRepresentation () );
+        } catch (Exception e) {
+            System.out.println ( e );
         }
 
-        result = searchableArray.search ( "банан" );
-        System.out.println ( "\nДемонстрация поиска товара" );
-        for (String s : result) {
-            System.out.println ( s );
-        }
-
-        result = searchableArray.search ( "Банан" );
-        System.out.println ( "\nДемонстрация поиска товара" );
-        for (String s : result) {
-            System.out.println ( s );
-        }
-
-        // *** Метод contains учитывает регистр строковой переменной -
-        // банан нашел в названии статьи, а как товар не определил
-
-        System.out.println("Тест определения имени");
-        System.out.println(searchableArray.searchableElements[1].getSearchableName());
+        System.out.println ( "\nПрограмма отработала несмотря на исключения!" );
     }
 }
