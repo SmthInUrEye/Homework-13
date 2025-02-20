@@ -8,47 +8,43 @@ import java.util.ListIterator;
 
 public class ProductBasket {
 
-    private int specialCounter = 0;
-    private final LinkedList<Product> productsInBasket = new LinkedList<>();
-    private int counter = 0;
-
+    private final LinkedList<Product> productsInBasket = new LinkedList<> ();
 
     public void addProduct(Product productName) {
-        productsInBasket.add(productName);
-        counter++;
+        productsInBasket.add ( productName );
     }
 
     public void printBasketValue() {
         int totalBasketValue = 0;
         for (Product product : productsInBasket) {
-            if (product != null) {
+            if ( product != null ) {
                 {
-                    totalBasketValue += product.getPrice();
+                    totalBasketValue += product.getPrice ();
                 }
             } else {
                 totalBasketValue += 0;
             }
         }
-        System.out.println("Общая стоимость корзины: " + totalBasketValue);
+        System.out.println ( "Общая стоимость корзины: " + totalBasketValue );
     }
 
     public void printBasketInfo() {
-        specialCounter = 0;
+        int specialCounter = 0;
         for (Product product : productsInBasket) {
-            System.out.println(product);
-            if (product != null && product.isSpecial()) {
+            System.out.println ( product );
+            if ( product != null && product.isSpecial () ) {
                 specialCounter++;
             }
         }
-        printBasketValue();
-        System.out.println("Специальных товаров: " + specialCounter);
+        printBasketValue ();
+        System.out.println ( "Специальных товаров: " + specialCounter );
     }
 
     public boolean checkProduct(String ProductName) {
         boolean flag = false;
         for (Product product : productsInBasket) {
-            if (product != null) {
-                if (ProductName.equals(product.getProductName())) {
+            if ( product != null ) {
+                if ( ProductName.equals ( product.getProductName () ) ) {
                     flag = true;
                     break;
                 }
@@ -58,23 +54,23 @@ public class ProductBasket {
     }
 
     public void clearBasket() {
-        ListIterator<Product> productIterator = productsInBasket.listIterator();
-        while (productIterator.hasNext()) {
-            productIterator.next();
-            productIterator.remove();
+        ListIterator<Product> productIterator = productsInBasket.listIterator ();
+        while (productIterator.hasNext ()) {
+            productIterator.next ();
+            productIterator.remove ();
         }
     }
 
-    public LinkedList<Product> deleteProduct (String name) {
+    public LinkedList<Product> deleteProduct(String name) {
 
-        ListIterator<Product> productIterator = productsInBasket.listIterator();
-        LinkedList <Product> deletedProducts = new LinkedList<>();
+        ListIterator<Product> productIterator = productsInBasket.listIterator ();
+        LinkedList<Product> deletedProducts = new LinkedList<> ();
 
-        while (productIterator.hasNext()) {
-            Product nextProduct = productIterator.next();
-            if (nextProduct.getProductName().equals(name)) {
-                deletedProducts.add(nextProduct);
-                productIterator.remove();
+        while (productIterator.hasNext ()) {
+            Product nextProduct = productIterator.next ();
+            if ( nextProduct.getProductName ().equals ( name ) ) {
+                deletedProducts.add ( nextProduct );
+                productIterator.remove ();
             }
         }
         return deletedProducts;

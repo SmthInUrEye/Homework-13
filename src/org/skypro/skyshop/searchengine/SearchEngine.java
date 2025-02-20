@@ -3,31 +3,24 @@ package org.skypro.skyshop.searchengine;
 import org.skypro.skyshop.exeptions.BestResultNotFound;
 import org.skypro.skyshop.interfaces.Searchable;
 
+import java.util.LinkedList;
+
 public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
 
-    public Searchable[] searchableElements;
-
-    private int counter = 0;
-
-    public SearchEngine(int numOfSearchElements) {
-        this.searchableElements = new Searchable[numOfSearchElements];
-    }
+    public LinkedList<Searchable> searchableElements = new LinkedList<> ();
 
     public void add(Searchable target) {
-        if ( counter >= searchableElements.length ) {
-            System.out.println ( "Переполнение поисковых элементов" );
-        } else {
-            searchableElements[counter] = target;
-            counter++;
-        }
+        searchableElements.add ( target );
     }
 
-    public String[] search(String search) {
-        String[] result = new String[5];
-        for (int i = 0; i < searchableElements.length; i++) {
-            if ( searchableElements[i].searchTerm ().contains ( search ) ) {
-                result[i] = searchableElements[i].getStringRepresentation ();
-            } else result[i] = null;
+    public LinkedList<String> search(String search) {
+
+        LinkedList<String> result = new LinkedList<> ();
+
+        for (Searchable searchableElement : searchableElements) {
+            if ( searchableElement.searchTerm ().contains ( search ) ) {
+                result.add ( searchableElement.getStringRepresentation () );
+            }
         }
         return result;
     }
@@ -37,9 +30,9 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
         int bestResultIndex = -1;
         int maxRepeatsInSearch = 0;
 
-        for (int i = 0; i < searchableElements.length; i++) {
-            if ( maxRepeatsInSearch < getSearchTerm ( search, searchableElements[i].searchTerm () ) ) {
-                maxRepeatsInSearch = getSearchTerm ( search, searchableElements[i].searchTerm () );
+        for (int i = 0; i < searchableElements.size (); i++) {
+            if ( maxRepeatsInSearch < getSearchTerm ( search, searchableElements.get ( i ).searchTerm () ) ) {
+                maxRepeatsInSearch = getSearchTerm ( search, searchableElements.get ( i ).searchTerm () );
                 bestResultIndex = i;
             }
         }
@@ -47,7 +40,7 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
         if ( maxRepeatsInSearch == 0 ) {
             throw new BestResultNotFound ( search );
         }
-        return searchableElements[bestResultIndex];
+        return searchableElements.get ( bestResultIndex );
     }
 
     @Override
