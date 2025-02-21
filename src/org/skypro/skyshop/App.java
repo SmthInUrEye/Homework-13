@@ -10,6 +10,7 @@ import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.searchengine.SearchEngine;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 
 public class App {
@@ -34,12 +35,17 @@ public class App {
         //Создание первой корзины
         ProductBasket firstBasket = new ProductBasket ();
 
+        //Создание корзины удалённых товаров
+        LinkedList<Product> deletedProducts = new LinkedList<> ();
+
         //Наполнение корзины товарами
         firstBasket.addProduct ( apple );
         firstBasket.addProduct ( juice );
         firstBasket.addProduct ( milk );
         firstBasket.addProduct ( banana );
         firstBasket.addProduct ( wine );
+        firstBasket.addProduct ( banana );
+        firstBasket.addProduct ( milk );
 
         //Создание статей для поиска
         Article articleAboutBanana = new Article ( "Статья про бананы",
@@ -49,7 +55,7 @@ public class App {
                 "Яблок всегда мало и они часто используются в школьных задачках" );
 
         //Создание поискового объекта
-        SearchEngine searchableArray = new SearchEngine ( 5 );
+        SearchEngine searchableArray = new SearchEngine ();
         searchableArray.add ( banana );
         searchableArray.add ( apple );
         searchableArray.add ( apple );
@@ -81,6 +87,25 @@ public class App {
             System.out.println ( e );
         }
 
-        System.out.println ( "\nПрограмма отработала несмотря на исключения!" );
+        System.out.println ( "\nТестирование после перехода на списки" );
+        firstBasket.printBasketInfo ();
+
+        System.out.println ( "Тестирование удаления продукта из корзины" );
+
+        System.out.println ( "Список удалённых продуктов: " + firstBasket.deleteProduct ( "Банан" ) );
+
+        System.out.println ( "+++Очистка корзины+++" );
+        firstBasket.clearBasket ();
+
+        System.out.println ( "+++Вывод новой информации+++" );
+        firstBasket.printBasketInfo ();
+
+        System.out.println ( "Пытаемся удалить несущетсвующий продукт:" );
+        deletedProducts = firstBasket.deleteProduct ( "Дерево" );
+
+        if ( deletedProducts.isEmpty () ) {
+            System.out.println ( "Список пуст" );
+        }
+
     }
 }
