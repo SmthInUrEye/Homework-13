@@ -25,7 +25,7 @@ public abstract class Product implements Searchable {
     public abstract boolean isSpecial();
 
     public String toString() {
-        return productName;
+        return "ProductName" + '{' + productName + '}';
     }
 
     @Override
@@ -40,7 +40,7 @@ public abstract class Product implements Searchable {
 
     @Override
     public String getSearchableName() {
-        return getProductName ();
+        return "ProductName" + '{' + getProductName () + '}';
     }
 
 }
