@@ -3,7 +3,10 @@ package org.skypro.skyshop.searchengine;
 import org.skypro.skyshop.exeptions.BestResultNotFound;
 import org.skypro.skyshop.interfaces.Searchable;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
 
@@ -13,13 +16,13 @@ public class SearchEngine implements org.skypro.skyshop.interfaces.Searchable {
         searchableElements.add ( target );
     }
 
-    public LinkedList<String> search(String search) {
+    public Map<String, Searchable> search(String search) {
 
-        LinkedList<String> result = new LinkedList<> ();
+        Map<String, Searchable> result = new TreeMap<> ();
 
         for (Searchable searchableElement : searchableElements) {
             if ( searchableElement.searchTerm ().contains ( search ) ) {
-                result.add ( searchableElement.getStringRepresentation () );
+                result.put ( searchableElement.getSearchableName (), searchableElement );
             }
         }
         return result;

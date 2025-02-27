@@ -14,15 +14,13 @@ public class Article implements Searchable {
 
     @Override
     public String toString() {
-        return "Article{" +
-                "ArticleName='" + articleName + '\'' +
-                ", ArticleText='" + articleText + '\'' +
-                '}';
+        return
+                "ArticleText{" + articleText + '}';
     }
 
     @Override
     public String searchTerm() {
-        return toString();
+        return toString ();
     }
 
     @Override
@@ -32,6 +30,6 @@ public class Article implements Searchable {
 
     @Override
     public String getSearchableName() {
-        return articleName;
+        return "AricleName{" + articleName + '}';
     }
 }

@@ -9,8 +9,8 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.searchengine.SearchEngine;
 
-import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Map;
 
 
 public class App {
@@ -36,7 +36,7 @@ public class App {
         ProductBasket firstBasket = new ProductBasket ();
 
         //Создание корзины удалённых товаров
-        LinkedList<Product> deletedProducts = new LinkedList<> ();
+        LinkedList<Product> deletedProducts;
 
         //Наполнение корзины товарами
         firstBasket.addProduct ( apple );
@@ -93,6 +93,8 @@ public class App {
         System.out.println ( "Тестирование удаления продукта из корзины" );
 
         System.out.println ( "Список удалённых продуктов: " + firstBasket.deleteProduct ( "Банан" ) );
+        System.out.println ( "Проверка что продукт удалён: " );
+        firstBasket.printBasketInfo ();
 
         System.out.println ( "+++Очистка корзины+++" );
         firstBasket.clearBasket ();
@@ -105,6 +107,26 @@ public class App {
 
         if ( deletedProducts.isEmpty () ) {
             System.out.println ( "Список пуст" );
+        }
+
+        //Демонстрация поиска после перехода на мапы
+
+        searchableArray.add ( banana );
+        searchableArray.add ( apple );
+        searchableArray.add ( apple );
+        searchableArray.add ( apple );
+        searchableArray.add ( articleAboutApple );
+        searchableArray.add ( articleAboutBanana );
+
+        System.out.println ( "Тестирование нового поиска" );
+        System.out.println ( searchableArray.searchableElements );
+
+        Map<String, Searchable> resultMap;
+        resultMap = searchableArray.search ( "Банан" );
+
+        System.out.println ( "Результаты поиска" );
+        for (Map.Entry<String, Searchable> entry : resultMap.entrySet ()) {
+            System.out.println ( entry.getKey () + " " + entry.getValue () );
         }
 
     }
