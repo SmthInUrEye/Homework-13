@@ -4,6 +4,7 @@ import org.skypro.skyshop.interfaces.Searchable;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 
 public abstract class Product implements Searchable {
 
@@ -41,6 +42,19 @@ public abstract class Product implements Searchable {
     @Override
     public String getSearchableName() {
         return "ProductName" + '{' + getProductName () + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode ( productName );
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if ( this == obj ) return true;
+        if ( obj == null || getClass () != obj.getClass () ) return false;
+        Product product = (Product) obj;
+        return Objects.equals ( productName, product.productName );
     }
 
 }

@@ -9,7 +9,7 @@ public interface Searchable {
     String getSearchableName();
 
     default String getStringRepresentation() {
-        return (searchTerm() + " - " + checkContentType());
+        return (searchTerm () + " - " + checkContentType ());
     }
 
     default int getSearchTerm(String search, String placeToSearch) {
@@ -21,4 +21,6 @@ public interface Searchable {
         }
         return maxRepeats;
     }
+
+
 }

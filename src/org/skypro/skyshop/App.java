@@ -9,9 +9,8 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.searchengine.SearchEngine;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class App {
 
@@ -52,7 +51,8 @@ public class App {
                 "Бананы очень полезны для организма. Растут на деревьях" );
 
         Article articleAboutApple = new Article ( "Статья про яблоки",
-                "Яблок всегда мало и они часто используются в школьных задачках" );
+                "Яблоко от яблони не далеко падает" );
+        Article articleAboutHealth = new Article ( "Статья про здоровье", "Яблоко помогает держать тонус и баланс физических сил человека" );
 
         //Создание поискового объекта
         SearchEngine searchableArray = new SearchEngine ();
@@ -61,6 +61,7 @@ public class App {
         searchableArray.add ( apple );
         searchableArray.add ( articleAboutApple );
         searchableArray.add ( articleAboutBanana );
+        searchableArray.add ( articleAboutHealth );
 
         //Создание некорректных объектов классов
         System.out.println ( "\nТестирование продуктовых исключений" );
@@ -77,7 +78,7 @@ public class App {
         Searchable brokenBestResult;
         try {
             System.out.println ( "\nИщем существующий объект" );
-            bestResult = searchableArray.findBestResult ( "банан" );
+            bestResult = searchableArray.findBestResult ( "Яблоко" );
             System.out.println ( bestResult.getStringRepresentation () );
 
             System.out.println ( "\nИщем несуществующий объект" );
@@ -117,12 +118,12 @@ public class App {
         System.out.println ( "Тестирование нового поиска" );
         System.out.println ( searchableArray.searchableElements );
 
-        Map<String, Searchable> resultMap;
-        resultMap = searchableArray.search ( "Банан" );
+        Set<Searchable> resultSet;
+        resultSet = searchableArray.search ( "Яблоко" );
 
         System.out.println ( "Результаты поиска" );
-        for (Map.Entry<String, Searchable> entry : resultMap.entrySet ()) {
-            System.out.println ( entry.getKey () + " " + entry.getValue () );
+        for (Searchable result : resultSet) {
+            System.out.println ( result );
         }
 
     }
