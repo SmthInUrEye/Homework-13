@@ -10,8 +10,8 @@ import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.searchengine.SearchEngine;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-
 
 public class App {
 
@@ -36,7 +36,7 @@ public class App {
         ProductBasket firstBasket = new ProductBasket ();
 
         //Создание корзины удалённых товаров
-        LinkedList<Product> deletedProducts;
+        List<Product> deletedProducts;
 
         //Наполнение корзины товарами
         firstBasket.addProduct ( apple );
@@ -103,11 +103,7 @@ public class App {
         firstBasket.printBasketInfo ();
 
         System.out.println ( "Пытаемся удалить несущетсвующий продукт:" );
-        deletedProducts = firstBasket.deleteProduct ( "Дерево" );
-
-        if ( deletedProducts.isEmpty () ) {
-            System.out.println ( "Список пуст" );
-        }
+        System.out.println ( deletedProducts = firstBasket.deleteProduct ( "Дерево" ) );
 
         //Демонстрация поиска после перехода на мапы
 
