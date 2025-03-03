@@ -15,33 +15,29 @@ public class ProductBasket {
     }
 
     public void printBasketValue() {
-        int totalBasketValue = 0;
-        for (List<Product> productsList : productsInBasket.values ()) {
-            for (Product product : productsList) {
-                if ( product != null ) {
-                    {
-                        totalBasketValue += product.getPrice ();
-                    }
-                } else {
-                    totalBasketValue += 0;
-                }
-            }
-        }
+        int totalBasketValue;
+        totalBasketValue = productsInBasket
+                .values ()
+                .stream ()
+                .flatMap ( List::stream )
+                .mapToInt ( Product::getPrice )
+                .sum ();
         System.out.println ( "Общая стоимость корзины: " + totalBasketValue );
     }
 
+    private int getSpecialCount() {
+        int specialCounter;
+        specialCounter = (int) productsInBasket.values ().stream ().flatMap ( List::stream ).filter ( Product::isSpecial ).count ();
+        return specialCounter;
+    }
+
     public void printBasketInfo() {
-        int specialCounter = 0;
-        for (List<Product> productList : productsInBasket.values ()) {
-            for (Product product : productList) {
-                System.out.println ( product );
-                if ( product != null && product.isSpecial () ) {
-                    specialCounter++;
-                }
-            }
-        }
+        productsInBasket.values ()
+                .stream ()
+                .flatMap ( List::stream )
+                .forEach ( System.out::println );
         printBasketValue ();
-        System.out.println ( "Специальных товаров: " + specialCounter );
+        System.out.println ( "Специальных товаров: " + getSpecialCount () );
     }
 
     public boolean checkProduct(String ProductName) {

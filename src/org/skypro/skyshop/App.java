@@ -91,6 +91,8 @@ public class App {
         System.out.println ( "\nТестирование после перехода на списки" );
         firstBasket.printBasketInfo ();
 
+        firstBasket.printBasketValue ();
+
         System.out.println ( "Тестирование удаления продукта из корзины" );
 
         System.out.println ( "Список удалённых продуктов: " + firstBasket.deleteProduct ( "Банан" ) );
