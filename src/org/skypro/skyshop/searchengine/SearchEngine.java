@@ -5,6 +5,8 @@ import org.skypro.skyshop.interfaces.NameComparator;
 import org.skypro.skyshop.interfaces.Searchable;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SearchEngine extends NameComparator implements Searchable {
 
@@ -14,15 +16,12 @@ public class SearchEngine extends NameComparator implements Searchable {
         searchableElements.add ( target );
     }
 
-    public Set <Searchable> search(String search)  {
-
-        Set<Searchable> result = new TreeSet<> ( new NameComparator ());
-
-        for (Searchable searchableElement : searchableElements) {
-            if ( searchableElement.searchTerm ().contains ( search ) ) {
-                result.add (  searchableElement );
-            }
-        }
+    public Set<Searchable> search(String search) {
+        Set<Searchable> result;
+        result = searchableElements
+                .stream ()
+                .filter ( searchable -> searchable.searchTerm ().contains ( search ) )
+                .collect ( Collectors.toCollection ( () -> new TreeSet<> ( new NameComparator () ) ) );
         return result;
     }
 
